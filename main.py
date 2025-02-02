@@ -1,5 +1,5 @@
-from dete.module_detection_main import function_detecting_output as dom
-from gene.module_main_generate import func_numerical_check as nch
+from detection.main import function_detecting_output as dom
+from generation.main import func_numerical_check as nch
 
 import pyperclip
 
@@ -9,7 +9,7 @@ map_num = input("输入需遍历的地图画数量:\n")
 # 检测输入是否出错
 detection_results = dom(map_id, map_num)
 
-if detection_results == True:
+if detection_results:
     map_id = int(map_id)
     map_num = int(map_num)
 
