@@ -16,7 +16,7 @@ class Box:
     Template = '{{Count:1b,{Slot}id:"minecraft:chest",tag:{{BlockEntityTag:{{Items:{Items},id:"minecraft:chest"}},display:{{Name:\'{{"Italic":false,"Extra":[{{"text":""}},{{"color":"dark_gray","text":"["}},{{"color":"dark_aqua","text":"{Begin}"}},{{"color":"gray","text":","}},{{"color":"aqua","text":"{End}"}},{{"color":"dark_gray","text":")"}}],"text":""}}\'}}}}}}'
 
     def __init__(self, Begin: int, End: int, Slot: int = -1):
-        from .iteration import Iterator
+        from .iterator import Iterator
 
         self.Begin = Begin
         self.End = End
@@ -33,3 +33,7 @@ class Box:
 
     def __format__(self) -> str:
         return self.__str__()
+
+
+class Constructor(Box):
+    pass
