@@ -1,0 +1,7 @@
+# Dependencies
+-r requirements.txt
+# Formatter
+black
+# Linter
+ruff
+pylint
