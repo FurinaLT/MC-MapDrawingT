@@ -1,26 +1,34 @@
-from . import PASS
+from collections.abc import Callable
+from typing import Self
+
+type Checker_t = Callable[[tuple], bool]
 
 
 class Checker:
-    def isNull(self) -> str:
-        return PASS if self.Content != "" else "字符串不能为空"
+    results = dict()
 
-    SubChecker = {"isNull": isNull}
-    EnabledChecker = ["isNull"]
-    Result = dict()
+    def __init__(self, SubCheckers: dict[Checker_t, str]) -> None:
+        self.subCheckers = SubCheckers
 
-    def __init__(self, Content: str, EnabledChecker: list[str] = EnabledChecker):
-        self.Content = Content
-        self.EnabledChecker = EnabledChecker
-        for Sub in self.EnabledChecker:
-            self.Result[Sub] = self.SubChecker[Sub](self)
+    def execTask(self, Content: tuple) -> Self:
+        for func in self.subCheckers.keys():
+            self.results[func] = func(Content)
+        return self
+
+    def getResults(self) -> dict[Checker_t, bool]:
+        return self.results
 
     def __bool__(self) -> bool:
-        return all(map(lambda i: i == PASS, self.Result.values()))
+        return all(self.results.values())
 
     def __str__(self) -> str:
-        Temp = list()
-        for S in self.Result.values():
-            if S != PASS:
-                Temp.append(S)
-        return ";".join(Temp)
+        tmp = list()
+        for func, result in self.results.items():
+            if not result:
+                tmp.append(self.subCheckers[func])
+        return ";".join(tmp)
+
+
+class CheckerNoMsg(Checker):
+    def __init__(self, SubCheckers: tuple[Checker_t, ...]) -> None:
+        self.subCheckers = {SubChecker: "" for SubChecker in SubCheckers}
