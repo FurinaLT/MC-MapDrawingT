@@ -1,9 +1,11 @@
+"""
+main
+"""
+
+import pyperclip
 from detection.checker import CheckerNoMsg as Checker
 from detection.subCheckers import isNotSpace, isNum, isNotNegative
 from generation.constructor import Constructor
-
-import pyperclip
-
 
 mapId = input("输入第一张地图画的编号:\n")
 mapNum = input("输入需遍历的地图画数量:\n")
@@ -29,8 +31,6 @@ if flagPass:
     try:
         pyperclip.copy(strBox)
     except pyperclip.PyperclipException as exception:
-        print(
-            f"复制失败!\n请手动复制到剪贴板\n以下是pyperclip原始报错信息:\n{exception}"
-        )
+        print(f"复制失败!\n请手动复制到剪贴板\n以下是pyperclip原始报错信息:\n{exception}")
     else:
         print("已复制到剪贴板!")
