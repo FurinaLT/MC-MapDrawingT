@@ -1,4 +1,0 @@
-# Dependencies
-pyperclip
-# Builder
-nuitka

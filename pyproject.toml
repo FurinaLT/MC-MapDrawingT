@@ -1,3 +1,25 @@
+[project]
+name = "MC-MapDrawingT"
+version = "0.2.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pyperclip>=1.9.0",
+]
+
+[project.optional-dependencies]
+build = [
+    "nuitka>=2.6.7",
+]
+
+[dependency-groups]
+dev = [
+    "pylint>=3.3.4",
+    "pyperclip>=1.9.0",
+    "ruff>=0.9.10",
+]
+
 [tool.black]
 line-length = 100
 unstable = true
